@@ -15,6 +15,10 @@
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
 
+    // เพิ่มโหลดภาพนกโดโด้
+    const bgImg = new Image();
+    bgImg.src = "https://upload.wikimedia.org/wikipedia/commons/3/3e/Dodo_1.JPG"; // เปลี่ยน URL ได้ตามต้องการ
+
     const roadWidth = 300;
     const roadX = (canvas.width - roadWidth) / 2;
     const playerWidth = 40, playerHeight = 70;
@@ -139,6 +143,14 @@
         ctx.fillText("Refresh to play again", 110, 430);
         document.getElementById('restartBtn').style.display = 'block';
         return;
+      }
+
+      // วาด background นกโดโด้
+      if (bgImg.complete) {
+        ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+      } else {
+        ctx.fillStyle = "#444";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
       }
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
